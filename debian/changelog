@@ -1,0 +1,91 @@
+libmaxminddb (1.4.2-0ubuntu1.20.04.1) focal-security; urgency=medium
+
+  * SECURITY UPDATE: heap overread in dump_entry_data_list
+    - debian/patches/CVE-2020-28241.patch: replace most malloc uses with
+      calloc in bin/mmdblookup.c, doc/libmaxminddb.md, src/maxminddb.c.
+    - CVE-2020-28241
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Wed, 11 Nov 2020 13:01:07 -0500
+
+libmaxminddb (1.4.2-0ubuntu1) focal; urgency=medium
+
+  * New upstream release: 1.4.2 (LP: #1867624)
+  * manpages are no longer rebuilt:
+    - d/p/0001-Remove-Pandoc-version-from-manpages.patch: removed, as the
+      upstream tarball only ships generated manpages now and no script
+      to rebuild them.
+    - d/control: drop b-d on pandoc, as it was only needed to rebuild
+      the manpages.
+    - d/rules: drop clean and autobuild overrides
+  * d/rules: add +now hardening
+  * d/compat, d/control: use debhelper 12 (d/compat removed)
+  * d/libmaxminddb0.install: add defined.3 manpage
+
+ -- Andreas Hasenack <andreas@canonical.com>  Mon, 16 Mar 2020 10:16:02 -0300
+
+libmaxminddb (1.3.2-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Drop Add-export-symbols-regexp-to-Makefile patch, merged upstream.
+  * Update Vcs-* URLs to point to salsa.debian.org.
+  * Bump Standards-Version to 4.1.4, no changes needed.
+  * Remove pre-stretch dbgsym-migration Conflicts.
+
+ -- Faidon Liambotis <paravoid@debian.org>  Sat, 26 May 2018 19:37:59 +0300
+
+libmaxminddb (1.3.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump Standards-Version to 4.1.2, no changes needed.
+  * Add NOTICE to debian/docs, per Apache-2.0's requirements, as identified by
+    lintian.
+  * Add patch to remove Pandoc version from manpages, as that may introduce
+    deltas between builds on different architecture, thus breaking multi-arch.
+    (Closes: #874247)
+  * Add patch to pass -export-symbols-regex to LDFLAGS, to export only MMDB_*
+    symbols and thus avoid exporting the new data_pool_* symbols, which are
+    seemingly internal-only.
+
+ -- Faidon Liambotis <paravoid@debian.org>  Wed, 27 Dec 2017 04:01:35 +0200
+
+libmaxminddb (1.2.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump Standards-Version to 4.0.0.
+  * Bump debhelper compatibility level to 10.
+
+ -- Faidon Liambotis <paravoid@debian.org>  Fri, 04 Aug 2017 22:40:10 +0300
+
+libmaxminddb (1.2.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump Standards-Version to 3.9.8.
+  * Pass -O--dbgsym-migration to dh_strip and relax the debhelper dependency
+    to ease backports.
+
+ -- Faidon Liambotis <paravoid@debian.org>  Fri, 15 Jul 2016 13:09:07 +0300
+
+libmaxminddb (1.1.5-1) unstable; urgency=medium
+
+  * New upstream release. (Closes: #816783)
+    - Fixes bound checking on several datatypes. (Closes: #805657)
+    - Drop patch fix-exec-includedir, superseded upstream.
+  * Bump Standards-Version to 3.9.7, no changes needed.
+  * Switch Homepage, Vcs-Git and Vcs-Browser to https URLs.
+  * Ship the pkg-config .pc file in the -dev package.
+  * Migrate from our own -dbg package to the automatic -dbgsym package.
+
+ -- Faidon Liambotis <paravoid@debian.org>  Wed, 23 Mar 2016 01:20:35 +0200
+
+libmaxminddb (1.0.4-2) unstable; urgency=medium
+
+  * Switch libmaxminddb-dev to multiarch include paths, due to
+    architecture-dependent header files. (Closes: #788878)
+
+ -- Faidon Liambotis <paravoid@debian.org>  Sun, 19 Jul 2015 02:22:02 +0300
+
+libmaxminddb (1.0.4-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #741199)
+
+ -- Faidon Liambotis <paravoid@debian.org>  Tue, 12 May 2015 19:30:28 +0300

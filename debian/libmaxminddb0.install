@@ -1,0 +1,3 @@
+usr/lib/*/lib*.so.*
+usr/share/man/man3/libmaxminddb.3
+usr/share/man/man3/defined.3
